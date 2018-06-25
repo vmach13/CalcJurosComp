@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de juros compostos - Vitor Machado de Oliveira Neves CC1M</title>
+	<script type="text/javascript">
+		var capital, tempo, taxa, MontArr, MontRel;
+
+		MontArr = [];
+		MontRel = [];
+
+		function calculo(){
+			capital = document.getElementById("cap").value;
+			tempo = document.getElementById("tempo").value;
+			taxa = (document.getElementById("juros").value)/100;
+
+			for(var i=0; i<tempo; i++){
+				MontArr[i]= capital*Math.pow((1+taxa), (i+1));
+				MontRel[i]=((MontArr[i]/capital)*100)-100;
+			}	
+
+			var print = "<ul>";
+			for(i=0; i<tempo; i++){
+				var mes = i+1;
+				print += "<li>" + "Mês " + mes +": Valor atualizado do rendimento: "+ MontArr[i].toFixed(2) + ". Rendimento percentual em relação ao capital inicial: " + MontRel[i].toFixed(2) + "% </li>";
+			}
+			print += "</ul>"
+			document.getElementById("resultados").innerHTML = print;
+
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Calculadora de Juros Compostos</h1>
+	<p>Digite abaixo o valor ao qual serão aplicados os juros.</p>
+	<input id="cap" type="text">
+	<p>Digite abaixo o tempo em meses da aplicação.</p>
+	<input id="tempo" type="text">
+	<p>Digite abaixo a taxa de juros a ser aplicada (apenas números).</p>
+	<input id="juros" type="text"><br><br>
+	<input type="button" value="Calcular" onclick="calculo()"><br>
+	<p id="resultados"></p>
+
+</body>
+</html>
+
+
